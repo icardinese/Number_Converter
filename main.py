@@ -3,7 +3,7 @@ import sys
 
 number_formats = {
     'binary': {'elements': {'0': 0,'1': 1}, 'base': 2},
-    'octal': {'elements': {'0': 0,'1': 1,'2': 2,'3': 3,'4': 4,'5': 5,'6': 7,'7': 7}, 'base': 8},
+    'octal': {'elements': {'0': 0,'1': 1,'2': 2,'3': 3,'4': 4,'5': 5,'6': 6,'7': 7}, 'base': 8},
     'decimal': {'elements': {'0': 0,'1': 1,'2': 2,'3': 3,'4': 4,'5': 5,'6': 6,'7': 7,'8': 8,'9': 9}, 'base': 10},
     'hexadecimal': {'elements': {'0': 0,'1': 1,'2': 2,'3': 3,'4': 4,'5': 5,'6': 6,'7': 7,'8': 8,'9': 9,'A': 10,'B': 11,'C': 12,'D': 13,'E': 14,'F': 15}, 'base': 16}
 }
@@ -62,6 +62,9 @@ def Main():
         # Now this algorithmn will convert decimal to the desired format. Or if decimal was selected just output decimal. 
         if (output_number_format.lower() == 'decimal'):
             print(decimal_number)
+        elif (decimal_number == 0):
+            lowest_value = list(number_formats[output_number_format.lower()]['elements'])[0]
+            print(f'{number_formats[output_number_format.lower()]['elements'][lowest_value]}')
         else:
             # This is to find out how many digits the output would have.
             converted_number_of_elements = 0
@@ -90,9 +93,9 @@ def Main():
                         base_converted_number.append(current_position_value)
                         Converted_number.append(elements)
                         break
-                Answer = ''
-                for elements in Converted_number:
-                    Answer += str(elements)
-        print(Answer)
+            Answer = ''
+            for elements in Converted_number:
+                Answer += str(elements)
+            print(Answer)
 
 Main()
